@@ -1,0 +1,1 @@
+#dt[s] uptime[s] startGPS[s] stopGPS[s] TS sqrt(TS) flux[TeV^-1cm^-2s^-1] fluxErr
