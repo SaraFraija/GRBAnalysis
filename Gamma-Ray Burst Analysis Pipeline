@@ -7,7 +7,6 @@ Two pivotal codes drive this project's workflow:
 
 In AnglesinHAWCFOV.ipynb, the input file, named dat2.dat, necessitates the following header:
 
-sql
 
 ### GRB	ra	dec	Error radius	Trigger	T90	eT90	T90 start	flux64	err flux64	T50	eT50	T50 start
 
