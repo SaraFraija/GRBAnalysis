@@ -1,24 +1,24 @@
-# GRBAnalysis
-This project has as a final product a list of .sh files to be run in the ICN cluster in Mexico using HAWC (High Altitude Water Cherenkov) data. 
-HAWC is an observatoy in high energies dedicated to the study of oobjects in GeV-TeV energies. This project focuses on GRBs (Gamma ray bursts), the bightest objects
-in the universe. These can be short or long depending on their T90 (Time in which the 5 to 90% of the Flux is observed in a specific
-energy range and cahnges with the instrument)
+The primary objective of this project is to generate a set of .sh files, tailored for execution on the ICN cluster in Mexico, utilizing data from the High Altitude Water Cherenkov (HAWC) observatory. HAWC specializes in probing high-energy phenomena within the GeV-TeV energy range. The central focus of this endeavor is the investigation of Gamma-Ray Bursts (GRBs), which are amongst the most luminous occurrences in the cosmos. Their temporal classification as short or long is contingent upon their T90 value—representing the time interval during which 5% to 90% of the flux becomes observable within a specific energy band, a parameter that adapts based on the observation instrument employed.
 
-The project has 2 main codes, each one with a specific goal:
-1. AnglesinHAWCFOV.ipynb
-2. KnowingRuns.ipynb
-In AnglesinHAWCFOV.ipynb takes a file called dat2.dat. This file must have the header:
+Two pivotal codes drive this project's workflow:
+
+    AnglesinHAWCFOV.ipynb
+    KnowingRuns.ipynb
+
+In AnglesinHAWCFOV.ipynb, the input file, named dat2.dat, necessitates the following header:
+
+sql
 
 ### GRB	ra	dec	Error radius	Trigger	T90	eT90	T90 start	flux64	err flux64	T50	eT50	T50 start
 
-Being GRB, the name of the GRB, ra and dec the Right Asencion and Declination of the GRB. Error radius, the position error. Trigger is the detection time in MJD. The resting parameters are not used in this stage.
+Here, "GRB" denotes the Gamma-Ray Burst's identifier, "ra" and "dec" represent the Right Ascension and Declination of the GRB respectively, "Error radius" pertains to positional uncertainty, and "Trigger" signifies the MJD (Modified Julian Date) at which detection occurred. The remaining parameters are extraneous for this phase.
 
-The code finds the time in MJD in whic the GRB is under the HAWC FOV. Then, finds the time interval for optimal observation. This time is in MJD and the output file called GRBsAngleFromZenith2.dat has both, the MJD and GPS times.
+This code orchestrates the identification of MJD intervals within which a given GRB falls within the HAWC FOV. Subsequently, optimal observation windows are deduced in MJD. The outcomes encompassing MJD and GPS times are captured in the output file, GRBsAngleFromZenith2.dat.
 
+The companion code, KnowingRuns.ipynb, incorporates three input files—GRBsAngleFromZenith2.dat, data.csv, and GPSTimes.csv. "data.csv" encompasses redshift information, while "GPSTimes.csv" is a repository of GPS times corresponding to HAWC runs under PASS 5. Leveraging these temporal data in conjunction with the runs, the code establishes the GRB's presence within HAWC data. On this foundation, it engineers a suite of bash scripts, varying in accordance with the number of runs in which a specific GRB manifests. These scripts encapsulate start and stop times for each run.
 
-The input files in  KnowingRuns.ipynb are GRBsAngleFromZenith2.dat, 'data.csv' and 'GPSTimes.csv'. The second file contains redshift information. In 'GPSTimes.csv' are the GPS times for all the runs in HAWC using PASS 5. These times are in GPS. Using these times and runs, it is found where these GRBs are in the HAWC data. Knowing that, bash codes are generated. Codes are generated depending on the amount of runs in which an specific GRB is observed. Each code contains a Start time and a stop time, corresponding to the initial and final time for each run. 
-With this information, a search in different time intervals is done with the tool zebra-transient-search. The codes have to be run in the ICN cluster. The detector response used is /storage/hawc/hawcroot/maps/pass-5/maps-fHit100pct-20210114/config/dr-zebra-dataBkg_alignedGammas.root. The EBL model is Gilmore12Fiducial.
+These scripted modules are essential for conducting investigations employing the "zebra-transient-search" tool. Analysis unfolds across diverse time intervals, with the backdrop of the detector response file, located at /storage/hawc/hawcroot/maps/pass-5/maps-fHit100pct-20210114/config/dr-zebra-dataBkg_alignedGammas.root. Notably, the EBL model adopted is "Gilmore12Fiducial."
 
-The results are shown in the notion page: https://www.notion.so/Well-located-GRBs-and-GW-8631693122574af7bb770ccf6ac9b965
+To view the outcomes, refer to the Notion page:  https://www.notion.so/Well-located-GRBs-and-GW-8631693122574af7bb770ccf6ac9b965
 
-The tutorial to be done in the ICN cluster to produce the file GPSTimes.csv is found in https://www.notion.so/Programas-y-tutoriales-35ca5e7379e24665888f9adfd823d914
+For insights into generating the GPSTimes.csv file within the ICN cluster, consult the tutorial available at: https://www.notion.so/Programas-y-tutoriales-35ca5e7379e24665888f9adfd823d914
