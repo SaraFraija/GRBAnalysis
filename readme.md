@@ -1,3 +1,4 @@
+## Gamma-Ray Burst Analysis Pipeline
 The primary objective of this project is to generate a set of .sh files, tailored for execution on the ICN cluster in Mexico, utilizing data from the High Altitude Water Cherenkov (HAWC) observatory. HAWC specializes in probing high-energy phenomena within the GeV-TeV energy range. The central focus of this endeavor is the investigation of Gamma-Ray Bursts (GRBs), which are amongst the most luminous occurrences in the cosmos. Their temporal classification as short or long is contingent upon their T90 value—representing the time interval during which 5% to 90% of the flux becomes observable within a specific energy band, a parameter that adapts based on the observation instrument employed.
 
 Two pivotal codes drive this project's workflow:
